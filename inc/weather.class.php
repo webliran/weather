@@ -1,6 +1,6 @@
 <?php 
 /**
-* Photos
+* Weather
 * 
 * @author Liran Hecht <liranhecht@gmail.com>
 */
