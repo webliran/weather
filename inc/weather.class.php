@@ -130,10 +130,10 @@ class Weather{
                 // check if current location
                 $metaData = $child->LocationMetaData;
                 if($metaData && $metaData->LocationId->__toString() == $this->loactionId){
-                    // get location tempture only for today
+                    // get location temp only for today
                     $locationData = $child->LocationData->TimeUnitData[0];
                     if($locationData){
-                        //$location[] = []
+                        // loop todays data and get high and low temp
                         foreach ($locationData->children() as $locationDataChild){
                             if($locationDataChild->ElementName->__toString() == "Minimum temperature")   
                                 $lowTemp = $locationDataChild->ElementValue->__toString();
@@ -149,8 +149,6 @@ class Weather{
             }
                 
         }   
-
-        // error no temp data
         
         if($type == "html" ){
             $seperate = $highTemp ? "-" : "";
@@ -174,6 +172,7 @@ class Weather{
         // get average temp
         $averageTemp = array_sum($tempArray)/count($tempArray);
         
+        // check average temp and return image of sun or rain
         if($averageTemp > 12){
             $imageUrl = "/weather/assets/img/sun.jpg";
         } else {
